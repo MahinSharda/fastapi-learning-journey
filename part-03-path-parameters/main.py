@@ -77,7 +77,7 @@ def general_http_exception_handler(request: Request, exception: StarletteHTTPExc
             "title": exception.status_code,
             "message": message,
         },
-        
+        status_code=exception.status_code,
     )
 
 
@@ -99,3 +99,4 @@ def validation_exception_handler(request: Request, exception: RequestValidationE
         },
         status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
     )
+

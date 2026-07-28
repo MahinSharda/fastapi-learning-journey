@@ -1,16 +1,29 @@
-posts: list[dict] = [
-    {
-        "id": 1,
-        "author": "Corey Schafer",
-        "title": "FastAPI is Awesome",
-        "content": "This framework is really easy to use and super fast.",
-        "date_posted": "April 20, 2025",
-    },
-    {
-        "id": 2,
-        "author": "Jane Doe",
-        "title": "Python is Great for Web Development",
-        "content": "Python is a great language for web development, and FastAPI makes it even better.",
-        "date_posted": "April 21, 2025",
-    },
-]
+OLD layout.html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        {% if title %}
+            FastAPI Blog - {{title}}
+        {% else %}
+            FastAPI Blog
+        {% endif %}
+    </title>
+</head>
+<body>
+    {% block content %}
+    {% endblock content%}
+</body>
+</html>
+
+
+OLD home.html
+
+{% extends "layout.html" %}
+{% block content %}
+    {% for post in posts %}
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.content }}</p>
+    {% endfor %}
+{% endblock content%}

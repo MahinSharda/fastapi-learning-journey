@@ -1,10 +1,20 @@
-from fastapi import FastAPI,Request,HTTPException,status
+from fastapi import Depends,FastAPI,Request,HTTPException,status
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from sqlalchemy import select
+from sqlalchemy.orm import session
 from schemas import PostCreate, PostResponse
+
+from typing import Annotated 
+
+import models
+from database import Base,engine,get_db
+from schemas import PostCreate,PostResponse
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
